@@ -1,0 +1,55 @@
+{
+  "apiVersion": "1",
+  "id": "com.noteblob.examples",
+  "name": "NoteBlob Example Plugins",
+  "version": "0.1.0",
+  "plugins": [
+    {
+      "id": "chart",
+      "name": "Chart.js",
+      "description": "Render Chart.js charts from a ```chart fence.",
+      "extension": "note-preview.node",
+      "node": "codeBlock",
+      "source": "dist/chart",
+      "main": "main.js",
+      "languages": ["chart"]
+    },
+    {
+      "id": "prism",
+      "name": "Prism",
+      "description": "Syntax highlighting for fenced code blocks.",
+      "extension": "note-preview.node",
+      "node": "codeBlock",
+      "source": "dist/highlight",
+      "main": "main.js",
+      "languages": [
+        "javascript",
+        "typescript",
+        "python",
+        "css",
+        "json",
+        "bash",
+        "swift"
+      ]
+    },
+    {
+      "id": "mermaid",
+      "name": "Mermaid",
+      "description": "Render mermaid diagrams in the preview.",
+      "extension": "note-preview.node",
+      "node": "codeBlock",
+      "source": "dist/mermaid",
+      "main": "main.js",
+      "languages": ["mermaid"]
+    },
+    {
+      "id": "pdf",
+      "name": "PDF",
+      "description": "Preview PDF files.",
+      "extension": "file-preview.document",
+      "source": "dist/pdf",
+      "main": "main.js",
+      "extensions": ["pdf"]
+    }
+  ]
+}

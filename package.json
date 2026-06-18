@@ -1,0 +1,27 @@
+{
+  "name": "@noteblob/plugin-examples",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Example NoteBlob plugins built against the published @noteblob/plugin-sdk package.",
+  "scripts": {
+    "build": "npm run clean && npm run vendor && npm run build:chart && npm run build:highlight && npm run build:mermaid && npm run build:pdf",
+    "build:chart": "esbuild src/chart/main.ts --bundle --format=esm --target=es2020 --outfile=dist/chart/main.js",
+    "build:highlight": "esbuild src/highlight/main.ts --bundle --format=esm --target=es2020 --outfile=dist/highlight/main.js",
+    "build:mermaid": "esbuild src/mermaid/main.ts --bundle --format=esm --target=es2020 --outfile=dist/mermaid/main.js",
+    "build:pdf": "esbuild src/pdf/main.ts --bundle --format=esm --target=es2020 --outfile=dist/pdf/main.js",
+    "clean": "rm -rf dist",
+    "test": "npm run typecheck && npm run build && noteblob-plugin validate .",
+    "vendor": "node scripts/vendor.mjs",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@noteblob/plugin-sdk": "^0.1.1",
+    "chart.js": "^4.5.0",
+    "esbuild": "^0.28.1",
+    "mermaid": "^11.4.1",
+    "pdfjs-dist": "^5.4.149",
+    "prismjs": "^1.30.0",
+    "typescript": "^5.4.0"
+  }
+}

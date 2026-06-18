@@ -1,0 +1,39 @@
+# NoteBlob Plugin Examples
+
+Standalone example plugin package for NoteBlob.
+
+This folder has its own npm install and depends on the published
+`@noteblob/plugin-sdk` package, so the examples type-check against the same SDK
+surface external plugin authors use.
+
+```sh
+fnm exec --using .node-version npm install
+fnm exec --using .node-version npm test
+```
+
+Edit `noteblob-package.json` directly. The SDK validator checks it against the
+SDK-provided schema.
+
+Source files live under `src/`:
+
+- `src/chart/main.ts`
+- `src/highlight/main.ts`
+- `src/mermaid/main.ts`
+- `src/pdf/main.ts`
+
+`npm run build` regenerates `dist/`, which is the installable package payload
+referenced by `noteblob-package.json`:
+
+- `dist/chart/main.js`
+- `dist/chart/vendor/chart.js`
+- `dist/highlight/main.js`
+- `dist/highlight/vendor/prism.css`
+- `dist/highlight/vendor/prism.js`
+- `dist/mermaid/main.js`
+- `dist/mermaid/vendor/mermaid.js`
+- `dist/pdf/main.js`
+- `dist/pdf/vendor/pdf.js`
+- `dist/pdf/vendor/pdf.worker.mjs`
+
+The root `noteblob-package.json` describes all example plugins as one
+installable NoteBlob package.
