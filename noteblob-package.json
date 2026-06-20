@@ -49,17 +49,6 @@
       }
     },
     {
-      "id": "pdf",
-      "name": "PDF",
-      "description": "Preview PDF files.",
-      "source": "dist/pdf",
-      "extension": {
-        "id": "file-preview.document",
-        "entry": "main.js",
-        "fileExtensions": ["pdf"]
-      }
-    },
-    {
       "id": "themes",
       "name": "NoteBlob Themes",
       "description": "Additional editor themes for NoteBlob.",

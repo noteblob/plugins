@@ -19,7 +19,6 @@ Source files live under `src/`:
 - `src/chart/main.ts`
 - `src/highlight/main.ts`
 - `src/mermaid/main.ts`
-- `src/pdf/main.ts`
 
 Theme templates live under `themes/` and are referenced directly by the
 manifest because theme plugins are JSON-only:
@@ -36,9 +35,6 @@ referenced by `noteblob-package.json`:
 - `dist/highlight/vendor/prism.js`
 - `dist/mermaid/main.js`
 - `dist/mermaid/vendor/mermaid.js`
-- `dist/pdf/main.js`
-- `dist/pdf/vendor/pdf.js`
-- `dist/pdf/vendor/pdf.worker.mjs`
 
 The root `noteblob-package.json` describes all official plugins as one
 installable NoteBlob package.

@@ -65,13 +65,3 @@ await bundleVendor({
   `,
 });
 
-await bundleVendor({
-  outfile: "dist/pdf/vendor/pdf.js",
-  stdin: `
-    export * from "pdfjs-dist/legacy/build/pdf.mjs";
-  `,
-});
-await copyFile(
-  join(packageRoot, "node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs"),
-  join(packageRoot, "dist/pdf/vendor/pdf.worker.mjs"),
-);
