@@ -27,11 +27,18 @@
         "node": "codeBlock",
         "languages": [
           "javascript",
+          "js",
           "typescript",
+          "ts",
+          "html",
+          "markup",
+          "xml",
           "python",
           "css",
           "json",
           "bash",
+          "sh",
+          "shell",
           "swift"
         ]
       }

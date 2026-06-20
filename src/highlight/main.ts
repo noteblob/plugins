@@ -19,6 +19,24 @@ function escapeHtml(s: string): string {
   );
 }
 
+const languageAliases: Record<string, string> = {
+  html: "markup",
+  js: "javascript",
+  shell: "bash",
+  sh: "bash",
+  ts: "typescript",
+  xml: "markup",
+};
+
+function prismLanguage(raw: string): string {
+  const language = raw.trim().toLowerCase();
+  return languageAliases[language] ?? language;
+}
+
+function cssLanguageClass(language: string): string {
+  return `language-${language.replace(/[^a-z0-9_-]/gi, "-")}`;
+}
+
 const plugin: NotePreviewNodePlugin = {
   async onPrepare({ assets }) {
     prism = await assets.loadLibrary<Prism>("vendor/prism.js");
@@ -26,11 +44,13 @@ const plugin: NotePreviewNodePlugin = {
   },
 
   render({ el, token }) {
-    const grammar = prism.languages[token.lang];
+    const language = prismLanguage(token.lang);
+    const languageClass = cssLanguageClass(language);
+    const grammar = prism.languages[language];
     const code = grammar
-      ? prism.highlight(token.source, grammar, token.lang)
+      ? prism.highlight(token.source, grammar, language)
       : escapeHtml(token.source);
-    el.innerHTML = `<pre class="language-${token.lang}"><code>${code}</code></pre>`;
+    el.innerHTML = `<pre class="${languageClass}"><code class="${languageClass}">${code}</code></pre>`;
   },
 };
 
