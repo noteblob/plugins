@@ -1,9 +1,9 @@
 {
-  "name": "@noteblob/plugin-examples",
+  "name": "@noteblob/plugins",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Example NoteBlob plugins built against the published @noteblob/plugin-sdk package.",
+  "description": "Official NoteBlob plugins built against the published @noteblob/plugin-sdk package.",
   "scripts": {
     "build": "npm run clean && npm run vendor && npm run build:chart && npm run build:highlight && npm run build:mermaid && npm run build:pdf",
     "build:chart": "esbuild src/chart/main.ts --bundle --format=esm --target=es2020 --outfile=dist/chart/main.js",
@@ -16,7 +16,7 @@
     "typecheck": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@noteblob/plugin-sdk": "^0.1.1",
+    "@noteblob/plugin-sdk": "^0.1.3",
     "chart.js": "^4.5.0",
     "esbuild": "^0.28.1",
     "mermaid": "^11.4.1",

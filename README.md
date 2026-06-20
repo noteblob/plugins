@@ -1,9 +1,9 @@
-# NoteBlob Plugin Examples
+# NoteBlob Official Plugins
 
-Standalone example plugin package for NoteBlob.
+Official plugin package for NoteBlob.
 
 This folder has its own npm install and depends on the published
-`@noteblob/plugin-sdk` package, so the examples type-check against the same SDK
+`@noteblob/plugin-sdk` package, so the plugins type-check against the same SDK
 surface external plugin authors use.
 
 ```sh
@@ -35,5 +35,5 @@ referenced by `noteblob-package.json`:
 - `dist/pdf/vendor/pdf.js`
 - `dist/pdf/vendor/pdf.worker.mjs`
 
-The root `noteblob-package.json` describes all example plugins as one
+The root `noteblob-package.json` describes all official plugins as one
 installable NoteBlob package.
