@@ -1,28 +1,23 @@
 // src/mermaid/main.ts
-var diagramBackground = "#ffffff";
 var fallbackFontFamily = '-apple-system, BlinkMacSystemFont, "San Francisco", sans-serif';
 var mermaid;
-async function draw({ el, token }) {
-  mermaid.initialize(configFor(el));
+async function draw({ el, token }, { theme }) {
+  mermaid.initialize(configFor(el, theme.colorScheme));
   el.classList.add("mermaid");
   el.removeAttribute("data-processed");
   el.textContent = token.source;
   await mermaid.run({ nodes: [el] });
   normalizeSVG(el);
 }
-function configFor(el) {
+function configFor(el, colorScheme) {
   const fontFamily = getComputedStyle(el).fontFamily || fallbackFontFamily;
   return {
     startOnLoad: false,
     securityLevel: "strict",
-    theme: "default",
+    theme: colorScheme === "dark" ? "dark" : "default",
     fontFamily,
     flowchart: {
       useMaxWidth: false
-    },
-    themeVariables: {
-      background: diagramBackground,
-      fontFamily
     }
   };
 }
@@ -35,7 +30,6 @@ function normalizeSVG(el) {
   }
   svg.style.maxWidth = "100%";
   svg.style.height = "auto";
-  svg.style.backgroundColor = diagramBackground;
 }
 function widthFromViewBox(viewBox) {
   if (!viewBox) return void 0;
@@ -48,7 +42,8 @@ var plugin = {
   async onPrepare({ assets }) {
     mermaid = await assets.loadLibrary("vendor/mermaid.js");
   },
-  render: draw
+  render: draw,
+  onThemeChange: draw
 };
 var main_default = plugin;
 export {

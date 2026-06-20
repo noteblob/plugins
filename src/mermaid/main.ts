@@ -1,4 +1,9 @@
-import type { NotePreviewNodePlugin, PreviewNode } from "@noteblob/plugin-sdk";
+import type {
+  ColorScheme,
+  NotePreviewNodePlugin,
+  PreviewContext,
+  PreviewNode,
+} from "@noteblob/plugin-sdk";
 
 // Minimal type for the bits of mermaid we use — passed to loadLibrary<T>.
 interface MermaidConfig {
@@ -9,10 +14,6 @@ interface MermaidConfig {
   flowchart?: {
     useMaxWidth: boolean;
   };
-  themeVariables?: {
-    background: string;
-    fontFamily?: string;
-  };
 }
 
 interface Mermaid {
@@ -20,14 +21,16 @@ interface Mermaid {
   run(options: { nodes: ArrayLike<HTMLElement> }): Promise<void>;
 }
 
-const diagramBackground = "#ffffff";
 const fallbackFontFamily =
   '-apple-system, BlinkMacSystemFont, "San Francisco", sans-serif';
 
 let mermaid: Mermaid;
 
-async function draw({ el, token }: PreviewNode): Promise<void> {
-  mermaid.initialize(configFor(el));
+async function draw(
+  { el, token }: PreviewNode,
+  { theme }: PreviewContext,
+): Promise<void> {
+  mermaid.initialize(configFor(el, theme.colorScheme));
   el.classList.add("mermaid");
   el.removeAttribute("data-processed");
   el.textContent = token.source;
@@ -35,19 +38,15 @@ async function draw({ el, token }: PreviewNode): Promise<void> {
   normalizeSVG(el);
 }
 
-function configFor(el: HTMLElement): MermaidConfig {
+function configFor(el: HTMLElement, colorScheme: ColorScheme): MermaidConfig {
   const fontFamily = getComputedStyle(el).fontFamily || fallbackFontFamily;
   return {
     startOnLoad: false,
     securityLevel: "strict",
-    theme: "default",
+    theme: colorScheme === "dark" ? "dark" : "default",
     fontFamily,
     flowchart: {
       useMaxWidth: false,
-    },
-    themeVariables: {
-      background: diagramBackground,
-      fontFamily,
     },
   };
 }
@@ -62,7 +61,6 @@ function normalizeSVG(el: HTMLElement): void {
   }
   svg.style.maxWidth = "100%";
   svg.style.height = "auto";
-  svg.style.backgroundColor = diagramBackground;
 }
 
 function widthFromViewBox(viewBox: string | null): number | undefined {
@@ -80,6 +78,7 @@ const plugin: NotePreviewNodePlugin = {
     mermaid = await assets.loadLibrary<Mermaid>("vendor/mermaid.js");
   },
   render: draw,
+  onThemeChange: draw,
 };
 
 export default plugin;
