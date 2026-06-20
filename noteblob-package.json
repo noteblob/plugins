@@ -58,6 +58,13 @@
         "entry": "main.js",
         "fileExtensions": ["pdf"]
       }
+    },
+    {
+      "id": "themes",
+      "name": "NoteBlob Themes",
+      "description": "Additional editor themes for NoteBlob.",
+      "source": "themes",
+      "extension": { "id": "theme" }
     }
   ]
 }

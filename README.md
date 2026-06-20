@@ -21,6 +21,11 @@ Source files live under `src/`:
 - `src/mermaid/main.ts`
 - `src/pdf/main.ts`
 
+Theme templates live under `themes/` and are referenced directly by the
+manifest because theme plugins are JSON-only:
+
+- `themes/notebook.json`
+
 `npm run build` regenerates `dist/`, which is the installable package payload
 referenced by `noteblob-package.json`:
 
