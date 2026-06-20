@@ -12,11 +12,10 @@ interface Mermaid {
     securityLevel: string;
     theme: string;
   }): void;
-  render(id: string, source: string): Promise<{ svg: string }>;
+  run(options: { nodes: ArrayLike<HTMLElement> }): Promise<void>;
 }
 
 let mermaid: Mermaid;
-let counter = 0;
 
 function themeName(scheme: ColorScheme): string {
   return scheme === "dark" ? "dark" : "default";
@@ -32,8 +31,10 @@ async function draw(
     securityLevel: "strict",
     theme: themeName(theme.colorScheme),
   });
-  const { svg } = await mermaid.render(`mmd-${counter++}`, token.source);
-  el.innerHTML = svg;
+  el.classList.add("mermaid");
+  el.removeAttribute("data-processed");
+  el.textContent = token.source;
+  await mermaid.run({ nodes: [el] });
   constrainSVG(el);
 }
 

@@ -1,6 +1,5 @@
 // src/mermaid/main.ts
 var mermaid;
-var counter = 0;
 function themeName(scheme) {
   return scheme === "dark" ? "dark" : "default";
 }
@@ -10,8 +9,10 @@ async function draw({ el, token }, { theme }) {
     securityLevel: "strict",
     theme: themeName(theme.colorScheme)
   });
-  const { svg } = await mermaid.render(`mmd-${counter++}`, token.source);
-  el.innerHTML = svg;
+  el.classList.add("mermaid");
+  el.removeAttribute("data-processed");
+  el.textContent = token.source;
+  await mermaid.run({ nodes: [el] });
   constrainSVG(el);
 }
 function constrainSVG(el) {
