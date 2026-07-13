@@ -9,7 +9,12 @@ var plugin = {
   },
   render({ el, token }, { theme }) {
     const config = JSON.parse(token.source);
-    config.options = { ...config.options, color: tickColor(theme.colorScheme) };
+    config.options = {
+      responsive: true,
+      maintainAspectRatio: false,
+      ...config.options,
+      color: tickColor(theme.colorScheme)
+    };
     const canvas = el.ownerDocument.createElement("canvas");
     el.replaceChildren(canvas);
     const chart = new Chart(canvas, config);
