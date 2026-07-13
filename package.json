@@ -1,6 +1,6 @@
 {
   "name": "@noteblob/plugins",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": true,
   "type": "module",
   "description": "Official NoteBlob plugins built against the published @noteblob/plugin-sdk package.",

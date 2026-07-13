@@ -1,6 +1,15 @@
 # NoteBlob Official Plugins
 
-Official plugin package for NoteBlob.
+The official plugin package for NoteBlob, providing commonly used features and themes.
+
+## Plugins
+
+- Chats: Render `chart` code blocks using [Chart.js](https://www.chartjs.org).
+- Syntax highlighting: Render fenced code blocks using [prismjs](https://prismjs.com).
+- Mermaid: Render [mermaid](https://mermaid.ai) code blocks.
+- Themes: Enjoy additional application themes.
+
+## Contributing
 
 This folder has its own npm install and depends on the published
 `@noteblob/plugin-sdk` package, so the plugins type-check against the same SDK

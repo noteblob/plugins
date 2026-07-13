@@ -127,7 +127,6 @@
       }
     },
     "id": "notebook",
-    "isBuiltIn": true,
     "main": {
       "accent": {
         "kind": "custom",

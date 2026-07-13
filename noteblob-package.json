@@ -2,7 +2,7 @@
   "apiVersion": "1",
   "id": "com.noteblob.plugins",
   "name": "NoteBlob Official Plugins",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "plugins": [
     {
       "id": "chart",
